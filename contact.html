@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toutes les nouveautés CSS en 2024 : c'est impressionnant</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"> -->
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      :root {
+        /* Par défaut : thème clair */
+        color-scheme: light;
+        --primary-color: #333;
+        --primary-background: #e4e4e4;
+        --highlight-color: hotpink;
+        --paint-background: #121212;
+        --paint-color: #fff;
+      }
+
+      .dark-theme {
+        color-scheme: dark;
+        --primary-color: #fafafa;
+        --primary-background: #121212;
+        --highlight-color: #fff;
+        --paint-background: hotpink;
+        --paint-color: #121212;
+      }
+      /* .dark-theme {
+  color-scheme: dark;
+  --primary-color: #fafafa;
+  --primary-background: #121212;
+  --highlight-color: lime;
+  --paint-background: #fff;
+  --paint-color: #121212;
+} */
+
+      /* Utilisation des variables */
+      body {
+        background-color: var(--primary-background);
+        color: var(--primary-color);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      button {
+        background-color: var(--highlight-color);
+        color: var(--paint-color);
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: var(--paint-background);
+        color: var(--highlight-color);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>Toutes les nouveautés CSS en 2024 : c'est impressionnant</h1>
+
+      <h2>Smooth transitions</h2>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <h2>Light-dark mode</h2>
+      <div class="row gap align-top">
+        Dark Mode Setting:<br />
+        <label
+          ><input name="color-scheme" type="radio" value="light dark" checked />
+          System</label
+        >
+        <label
+          ><input name="color-scheme" type="radio" value="light" /> Forced
+          Light</label
+        >
+        <label
+          ><input name="color-scheme" type="radio" value="dark" /> Forced
+          Dark</label
+        >
+      </div>
+
+      <button popovertarget="my-popover">Open Popover</button>
+
+      <div id="my-popover" popover>
+        <p>
+          I am a popover with more information. Hit <kbd>esc</kbd> or click away
+          to close me.
+        </p>
+      </div>
+
+      <section>
+        <p>paint-order: stroke fill</p>
+        <h1 class="paint-order" style="color: var(--highlight-color)">
+          <span>Super</span>
+          <div>
+            <span>CSS</span>
+            <span>World</span>
+          </div>
+        </h1>
+      </section>
+
+      <div>
+        <button id="theme-switcher">Switch Theme</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    // Récupérer le bouton
+    const themeSwitcher = document.getElementById('theme-switcher');
+
+    // Ajouter un gestionnaire d'événement pour basculer les thèmes
+    themeSwitcher.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark-theme');
+
+      // Mettre à jour le texte du bouton
+      if (document.documentElement.classList.contains('dark-theme')) {
+        themeSwitcher.textContent = 'Switch to Light Theme';
+      } else {
+        themeSwitcher.textContent = 'Switch to Dark Theme';
+      }
+    });
+  </script>
+</html>

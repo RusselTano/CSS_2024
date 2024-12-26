@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toutes les nouveautés CSS en 2024 : c'est impressionnant</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"> -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>Toutes les nouveautés CSS en 2024 : c'est impressionnant</h1>
+
+      <h2>Smooth transitions</h2>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <h2>Light-dark mode</h2>
+      <div class="row gap align-top">
+        Dark Mode Setting:<br />
+        <label
+          ><input name="color-scheme" type="radio" value="light dark" checked />
+          System</label
+        >
+        <label
+          ><input name="color-scheme" type="radio" value="light" /> Forced
+          Light</label
+        >
+        <label
+          ><input name="color-scheme" type="radio" value="dark" /> Forced
+          Dark</label
+        >
+      </div>
+
+      <br /><br />
+      <button>Show Dialog</button>
+
+      <dialog>
+        <h1>I am the dialog!</h1>
+        <p>
+          As of Chrome 122 my backdrop is light purple, because from that
+          version on the <code>::backdrop</code> inherits any inheritable
+          properties–including custom properties–from the
+          <code>dialog</code> element.
+        </p>
+        <form method="dialog"><button>Close</button></form>
+      </dialog>
+    </div>
+  </body>
+  <script>
+    document.querySelector('button').addEventListener('click', (e) => {
+      document.querySelector('dialog').showModal();
+    });
+  </script>
+</html>

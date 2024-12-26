@@ -1,0 +1,375 @@
+/* reset */
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 0 3rem;
+}
+
+/* View Transition */
+@view-transition {
+  navigation: auto;
+}
+
+/* Light-dark mode */
+/* https://drafts.csswg.org/css-color-4/#light-dark */
+:root {
+  color-scheme: light dark;
+  --primary-color: light-dark(#333, #fafafa);
+  --primary-background: light-dark(#e4e4e4, #121212);
+  --highlight-color: light-dark(hotpink, lime);
+  --paint-background: light-dark(#121212, #fff);
+  --paint-color: light-dark(#fff, #121212);
+
+  &:has(input[name='color-scheme'][value='light dark']:checked) {
+    color-scheme: light dark;
+  }
+  &:has(input[name='color-scheme'][value='light']:checked) {
+    color-scheme: light;
+  }
+  &:has(input[name='color-scheme'][value='dark']:checked) {
+    color-scheme: dark;
+  }
+}
+
+html,
+body {
+  color: var(--primary-color);
+  background-color: var(--primary-background);
+  transition: color 0.2s, background-color 0.4s;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+/* Field-sizing */
+/* https://drafts.csswg.org/css-ui-4/#field-sizing */
+:root {
+  interpolate-size: allow-keywords;
+}
+textarea,
+select,
+input {
+  field-sizing: content;
+  padding: 10px 13px;
+}
+
+/* Animate to height: auto */
+/* https://chrome.dev/css-wrapped-2024/#animate-to-height-auto */
+.link {
+  display: grid;
+  grid-template-columns: 1.5rem auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  white-space: nowrap;
+  width: 2.5rem;
+  overflow-x: clip;
+  transition: width 0.35s ease;
+  background: #eaeaea;
+  border-radius: 0.5rem;
+  color: #5f6368;
+
+  &:hover,
+  &:focus-visible {
+    width: max-content;
+  }
+
+  .text {
+    padding-right: 0.5rem;
+  }
+}
+
+/* Styleable details */
+/* https://chrome.dev/css-wrapped-2024/#styleable-details*/
+@supports selector(::details-content) {
+  .warning {
+    display: none;
+  }
+}
+
+details {
+  transition: all 0.3s ease;
+  background: var(--primary-background);
+  border: 1px solid #ccc;
+}
+
+details:not([open]):has(+ details:not(details[open])) {
+  border-bottom-color: #fff;
+}
+
+summary {
+  transition: all 0.3s ease;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+[open] summary {
+  padding: 1em 1em;
+}
+
+summary:hover {
+  color: #666;
+}
+
+summary::marker {
+  content: '';
+}
+
+summary::after {
+  content: '';
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgYmFzZVByb2ZpbGU9InRpbnkiIGhlaWdodD0iMjRweCIgaWQ9IkxheWVyXzEiIHZlcnNpb249IjEuMiIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHBhdGggZD0iTTguNTg2LDUuNTg2Yy0wLjc4MSwwLjc4MS0wLjc4MSwyLjA0NywwLDIuODI4TDEyLjE3MSwxMmwtMy41ODUsMy41ODZjLTAuNzgxLDAuNzgxLTAuNzgxLDIuMDQ3LDAsMi44MjggIEM4Ljk3NiwxOC44MDUsOS40ODgsMTksMTAsMTlzMS4wMjQtMC4xOTUsMS40MTQtMC41ODZMMTcuODI5LDEybC02LjQxNS02LjQxNEMxMC42MzQsNC44MDUsOS4zNjYsNC44MDUsOC41ODYsNS41ODZ6Ii8+PC9zdmc+);
+  background-size: cover;
+  width: 1.25rem;
+  aspect-ratio: 1;
+  display: block;
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+  transform-origin: 50% 50%;
+}
+
+[open] summary::after {
+  transform: rotate(270deg);
+}
+
+.details-content-wrapper {
+  padding: 0.5em 1em;
+}
+
+::details-content {
+  transition: all 0.3s ease, content-visibility 0.3s allow-discrete;
+  height: 0;
+  overflow: clip;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  [open]::details-content {
+    height: auto;
+    padding-bottom: 0.5em;
+  }
+}
+
+@supports not (interpolate-size: allow-keywords) {
+  [open]::details-content {
+    height: 150px;
+    overflow-y: scroll;
+  }
+}
+
+/* Anchor position */
+/* https://drafts.csswg.org/css-ui-4/#anchor-position */
+.anchor {
+  overflow: clip;
+  border-radius: 30px;
+  outline: 1px solid #0002;
+  max-inline-size: min(50vw, 480px);
+  anchor-name: --over-easy;
+}
+.positioned-element {
+  font-size: 2rem;
+  font-weight: bold;
+  background: Canvas;
+  color: CanvasText;
+  padding: 1ch 2ch;
+  border-radius: 1e3px;
+  box-shadow: 0 5px 10px #0003;
+
+  position: fixed;
+  position-anchor: --over-easy;
+  position-area: top right;
+}
+
+/* Custom Scrollbar */
+.container {
+  border: 1px solid #ccc;
+  max-inline-size: min(50vw, 480px);
+  height: 200px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: green red;
+}
+
+/* Smooth transitions */
+/* https://drafts.csswg.org/css-transitions-2/#smooth-transitions */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 100%;
+  background: red;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@keyframes progress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+.progress-bar.animate {
+  animation: progress 0.3s ease;
+  animation-timeline: scroll();
+}
+
+@layer dialog {
+  ::backdrop {
+    background-color: transparent;
+  }
+
+  dialog {
+    --timing: 0.4s;
+    border: 0.25em solid var(--border-color);
+    transition: all var(--timing) ease,
+      display var(--timing) ease allow-discrete;
+    opacity: 0;
+    max-width: 80ch;
+    width: 90%;
+    border-radius: 0.25em;
+
+    &[open] {
+      opacity: 1;
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+
+    &[open]::backdrop {
+      opacity: 1;
+    }
+  }
+}
+
+/* @property */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+div.property {
+  --angle: 0deg;
+  width: 50vmin;
+  height: 50vmin;
+  border: 10vmin solid;
+  border-image: conic-gradient(
+      from var(--angle),
+      red,
+      yellow,
+      lime,
+      aqua,
+      blue,
+      magenta,
+      red
+    )
+    1;
+
+  animation: 10s rotate linear infinite;
+}
+ul {
+  display: flex;
+  gap: 0.5rem;
+}
+nav a {
+  transition: width 0.35s ease;
+  background: var(--primary-background);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--primary-color);
+  white-space: nowrap;
+  overflow-x: clip;
+
+  &:hover {
+    width: max-content;
+  }
+}
+
+/* POPUP */
+::backdrop {
+  background-color: rgba(204, 204, 188, 0.8);
+}
+[popover]:popover-open {
+  translate: 0 0;
+}
+
+[popover] {
+  translate: 0 -22rem;
+  transition: translate 0.7s ease-out, display 0.7s ease-out allow-discrete;
+}
+
+/*   0. BEFORE-OPEN STATE   */
+@starting-style {
+  [popover]:popover-open {
+    translate: 0 -22rem;
+  }
+}
+
+/* Paint Order */
+.paint-order {
+  paint-order: stroke fill;
+
+  /* https://caniuse.com/mdn-css_properties_paint-order */
+  /* default is paint-order: fill stroke */
+  /* mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order */
+}
+
+@layer demo.support {
+  section h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-transform: uppercase;
+    font-size: clamp(4.5rem, 7vw, 6.5rem);
+    font-weight: 900;
+    letter-spacing: -0.175ch;
+    line-height: 0.9;
+    color: var(--paint-color);
+    -webkit-text-stroke: 5px var(--paint-background);
+    text-shadow: 8px 8px var(--paint-background);
+
+    > span:first-of-type {
+      font-size: 0.75em;
+    }
+
+    > div {
+      display: flex;
+      gap: 0.5ch;
+    }
+  }
+
+  section {
+    display: grid;
+    place-items: center;
+    gap: 2vmin;
+
+    > p {
+      border: 2px solid #aaa;
+      border-radius: 1e3px;
+      padding-inline: 1.5ch;
+      line-height: 1.75;
+    }
+  }
+}
