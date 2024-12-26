@@ -41,6 +41,7 @@ body {
   color: var(--primary-color);
   background-color: var(--primary-background);
   transition: color 0.2s, background-color 0.4s;
+  /* font-family: sans-serif; */
 }
 
 ul {
